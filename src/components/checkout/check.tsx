@@ -66,7 +66,7 @@ useEffect(() => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5200/Pending/calculate-price", {
+      const res = await axios.post("https://pending-backend-vdug.onrender.com/Pending/calculate-price", {
         pageCount,
         deliveryDate,
       });
@@ -80,7 +80,7 @@ useEffect(() => {
 
     // Optional: If orders endpoint is needed
     try {
-      const response = await axios.post("http://localhost:5200/Pending/orders", {
+      const response = await axios.post("https://pending-backend-vdug.onrender.com/Pending/orders", {
         pageCount,
         deliveryDate,
       }, {
