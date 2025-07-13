@@ -8,7 +8,7 @@ export const Signup = () => {
 
     })
 
-    const handelinput = (e) => {
+    const handelinput = (e: { target: { name: any; value: any } }) => {
         let name = e.target.name;
         let value = e.target.value;
         setUser({
@@ -17,7 +17,7 @@ export const Signup = () => {
         })
     }
 
-    const handelsubmit = (e) => {
+    const handelsubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
         console.log(user)
     }
