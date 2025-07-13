@@ -143,7 +143,7 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
       formData.append("file", file);
 
       const fileUploadResponse = await axios.post(
-        "https://pending-backend-vdug.onrender.com/upload-pdf",
+        "https://pending-backend-vdug.onrender.com/Pending/upload-pdf",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
