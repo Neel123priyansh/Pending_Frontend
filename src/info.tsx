@@ -143,7 +143,7 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
       formData.append("file", file);
 
       const fileUploadResponse = await axios.post(
-        "http://localhost:5200/Pending/upload-pdf",
+        "https://pending-frontend-eight.vercel.app/upload-pdf",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -167,7 +167,7 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
       };
 
       const response = await axios.post(
-        "http://localhost:5200/Pending/save-user-data",
+        "https://pending-frontend-eight.vercel.app/Pending/save-user-data",
         userData,
         { headers: { "Content-Type": "application/json" } }
       );
