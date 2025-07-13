@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Header from "../components/Header/header";
-import { Test } from '../Test/test';
+import { Test } from '../test';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import '@coreui/coreui-pro/dist/css/coreui.min.css';
