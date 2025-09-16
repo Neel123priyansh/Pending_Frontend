@@ -11,7 +11,7 @@ export default function header() {
           <li className='p-4 hover:border-b-2 hover:border-[#00df9a] hover:border-opacity-60'>Price</li >
           <li className='p-4 hover:border-b-2 hover:border-[#00df9a] hover:border-opacity-60'>Contact Us</li>
         </ul>
-    </div>
+    </div> 
   )
 }
  
