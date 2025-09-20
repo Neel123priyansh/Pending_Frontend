@@ -67,7 +67,6 @@ const [user, setUser] = useState<{
 
 const sendOTP = async (phoneNumber: string) => {
   try {
-    // Prevent multiple instances of RecaptchaVerifier
     if (!(window as any).recaptchaVerifier) {
       (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
         size: "invisible",
