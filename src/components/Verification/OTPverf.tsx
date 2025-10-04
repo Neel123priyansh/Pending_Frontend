@@ -15,7 +15,7 @@ const OTPverf: React.FC = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (timeLeft <= 0) {
-      setCanResend(true);
+      setCanResend(true); 
       return;
     }
     const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
