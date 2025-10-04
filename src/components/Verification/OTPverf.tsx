@@ -31,7 +31,7 @@ const OTPverf: React.FC = () => {
     } catch (error) {
       toast.error("Failed to resend OTP");
     }
-  };
+  }; 
 
   const formatTime = (sec: number) => {
     const min = Math.floor(sec / 60);
