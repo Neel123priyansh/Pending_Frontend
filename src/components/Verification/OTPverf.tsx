@@ -11,7 +11,7 @@ import Headerwo from "../Header/header_wo";
  
 const OTPverf: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(120);
-  const [canResend, setCanResend] = useState(false);
+  const [canResend, setCanResend] = useState(false); 
   const navigate = useNavigate();
   useEffect(() => { 
     if (timeLeft <= 0) {
