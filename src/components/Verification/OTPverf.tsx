@@ -44,7 +44,7 @@ const OTPverf: React.FC = () => {
     const confirmationResult = (window as any).confirmationResult; 
 
     if (!confirmationResult) {
-      toast.error("No OTP confirmation found. Please try again."); 
+      toast.error("No OTP confirmation found. Please try again.");  
       return; 
     }
 
