@@ -19,7 +19,7 @@ const OTPverf: React.FC = () => {
       return;
     }
     const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); 
   }, [timeLeft]);
 
   const handleResend = async () => {
