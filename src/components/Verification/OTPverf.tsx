@@ -18,7 +18,7 @@ const OTPverf: React.FC = () => {
       setCanResend(true);  
       return;
     } 
-    const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+    const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000); 
     return () => clearTimeout(timer); 
   }, [timeLeft]);
 
