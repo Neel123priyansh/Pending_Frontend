@@ -8,7 +8,7 @@ import {
   InputOTPSlot,
 } from "../@/components/ui/input-otp"
 import Headerwo from "../Header/header_wo";
-
+ 
 const OTPverf: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(120);
   const [canResend, setCanResend] = useState(false);
