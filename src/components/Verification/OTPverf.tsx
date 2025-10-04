@@ -36,7 +36,7 @@ const OTPverf: React.FC = () => {
   const formatTime = (sec: number) => {
     const min = Math.floor(sec / 60);
     const seconds = sec % 60;
-    return `${min}:${seconds < 10 ? "0" : ""}${seconds}`;
+    return `${min}:${seconds < 10 ? "0" : ""}${seconds}`; 
   };
 
   const handleOtpSubmit = async (e: React.FormEvent) => {
