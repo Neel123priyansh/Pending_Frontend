@@ -41,7 +41,7 @@ const OTPverf: React.FC = () => {
 
   const handleOtpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const confirmationResult = (window as any).confirmationResult;
+    const confirmationResult = (window as any).confirmationResult; 
 
     if (!confirmationResult) {
       toast.error("No OTP confirmation found. Please try again."); 
