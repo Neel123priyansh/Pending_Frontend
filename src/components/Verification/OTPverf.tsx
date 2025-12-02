@@ -174,7 +174,7 @@ const OTPverf: React.FC = () => {
                 className={`ml-2 ${canResend ? "text-[#00c78c] hover:underline" : "text-gray-400"}`}
                 disabled={!canResend}
                 onClick={handleClickResend}
-              >
+              > 
                 {canResend ? "Resend Code" : "Resend Disabled"}
               </button>
             </p>
