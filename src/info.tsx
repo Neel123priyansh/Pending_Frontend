@@ -20,7 +20,6 @@ declare global {
   }
 }
 
-
 export const Info = () => {
 const [user, setUser] = useState<{
   name: string;
@@ -48,7 +47,7 @@ const [user, setUser] = useState<{
     register,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(infoSchema),
+    resolver: yupResolver(infoSchema),        
   });
 
   // Date Picker Handler
@@ -116,8 +115,6 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
-
-  // Basic form validation
   if (!validateEmail(user.email)) {
     toast.error("Please enter a valid College Email Address");
     return;
@@ -175,7 +172,6 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
         throw new Error("Failed to save user data");
       }
 
-      // 3. Save to localStorage
       localStorage.setItem("fileName", pdf.fileUrl);
       localStorage.setItem("pageCount", pageCount.toString());
       const deliveryDateISO = user.date ? new Date(user.date).toISOString() : null;
@@ -291,7 +287,6 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
             options={options}
             required
           />
-
           <button type="submit" className="mt-8 rounded-xl font-urbanist w-96 h-11 text-xl text-white bg-[#00df9a] mx-auto">
             NEXT STEP
           </button>

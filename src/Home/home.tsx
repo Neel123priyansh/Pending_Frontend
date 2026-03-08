@@ -5,6 +5,7 @@ import About from "../components/About/about"
 import Logo from "../components/logo/logo";
 import Text from '../components/About/text'
 import People from '../components/About/people'
+import Footer from "@/components/Footer/footer";
 
 export const Home = () => {
   return (
@@ -16,6 +17,7 @@ export const Home = () => {
     <Text/>
     <About/>
     <People/>
+    <Footer/>
     {/* <Why/> */}
     {/* <Step/> */}
     </>

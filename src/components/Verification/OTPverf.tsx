@@ -6,6 +6,7 @@ import Headerwo from "../Header/header_wo";
 import ConfirmCancel from "./ConfirmCancel";
 
 const OTPverf: React.FC = () => {
+  
   const navigate = useNavigate();
   const location = useLocation();
   const phone = (location.state as { phone?: string })?.phone ?? ""; // ensure phone is passed when navigating here
@@ -14,7 +15,6 @@ const OTPverf: React.FC = () => {
   const [canResend, setCanResend] = useState<boolean>(false);
   const [cancelOpen, setCancelOpen] = useState<boolean>(false);
 
-  // OTP digits controlled as array of strings
   const [otpDigits, setOtpDigits] = useState<string[]>(["", "", "", "", "", ""]);
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
 
