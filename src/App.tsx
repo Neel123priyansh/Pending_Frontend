@@ -6,7 +6,6 @@ import { PrivateRoute } from './components/checkout/PrivateRoute'
 import OTPverf from './components/Verification/OTPverf'
 import {Info_lab} from './info_page_lab'
 import {Info_project} from './info_page_project'
-import { useState } from 'react'
 
 
 const App = () => {
