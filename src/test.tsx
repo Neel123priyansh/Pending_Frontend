@@ -20,21 +20,21 @@ export const Test: React.FC<TestProps> = ({ handleFile }) => {
 
   return (
     <div className='flex flex-col items-center justify-center'>
-      <button 
-        className='bg-[#2d2d2c] rounded-[12px] h-20 mb-5 w-80' 
+      <button
+        className='backdrop-blur-xl bg-white/[0.04] border rounded-[12px] h-20 mb-5 w-80'
         type="button"
         onClick={handleClick}
       >
         <p className='text-white text-2xl font-bold font-urbanist'>Select The PDF</p>
       </button>
-      <input 
-        type='file' 
-        name="fileUpload" 
-        accept='application/pdf' 
-        required 
-        ref={hiddenFileInput} 
+      <input
+        type='file'
+        name="fileUpload"
+        accept='application/pdf'
+        required
+        ref={hiddenFileInput}
         onChange={handleChange}
-        style={{ visibility: 'visible', height: 0 }} 
+        style={{ visibility: 'visible', height: 0 }}
       />
     </div>
   );

@@ -38,7 +38,7 @@ export const Confirmation = () => {
             <span className="font-medium text-black">₹500</span>
           </div>
           <div className="flex justify-center">
-            <button onClick={() => navigate('/')} className="inline-flex items-center justify-center px-16 bg-[#00df9a] py-2 rounded-3xl text-lg font-semibold text-white">Home</button>
+            <button onClick={() => navigate('/')} className="inline-flex items-center justify-center px-16 bg-[#00df9a] py-2 cursor-pointer rounded-3xl text-lg font-semibold text-white">Home</button>
           </div>
         </div>
         <div className="flex justify-center">

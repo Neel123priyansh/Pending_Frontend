@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
-import { addDays} from 'react-datepicker/dist/date_utils.d';
+import { addDays } from 'react-datepicker/dist/date_utils.d';
 import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { ToastContainer, toast } from 'react-toastify';
 import '@coreui/coreui-pro/dist/css/coreui.min.css';
+import LightPillar from './assets/background';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import Test from './test';
@@ -21,21 +22,21 @@ declare global {
 }
 
 export const Info = () => {
-const [user, setUser] = useState<{
-  name: string;
-  email: string;
-  phone: string;
-  date: Date | null;
-  pdf: string;
-  select: { value: string; label: string } | null;
-}>({
-  name: '',
-  email: '',
-  phone: '',
-  date: null,
-  pdf: '',
-  select: null,
-});
+  const [user, setUser] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    date: Date | null;
+    pdf: string;
+    select: { value: string; label: string } | null;
+  }>({
+    name: '',
+    email: '',
+    phone: '',
+    date: null,
+    pdf: '',
+    select: null,
+  });
 
   const [file, setFile] = useState<File | null>(null);
   const [, setIsSubmitting] = useState(false);
@@ -47,14 +48,14 @@ const [user, setUser] = useState<{
     register,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(infoSchema),        
+    resolver: yupResolver(infoSchema),
   });
 
   // Date Picker Handler
-  const handleDateChange = (dateselected: Date | null) => { 
+  const handleDateChange = (dateselected: Date | null) => {
     setUser(prevUser => ({ ...prevUser, date: dateselected }));
   };
-  
+
   // Email Validation
   const validateEmail = (email: string) => /^[a-zA-Z0-9._%+-]+@srmist\.edu\.in$/.test(email);
 
@@ -64,42 +65,42 @@ const [user, setUser] = useState<{
     setUser(prevUser => ({ ...prevUser, [name]: value }));
   };
 
-const sendOTP = async (phoneNumber: string) => {
-  try {
-    if (!(window as any).recaptchaVerifier) {
-      (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-        size: "invisible",
-        callback: () => {
-          // reCAPTCHA solved, proceed
-        },
-        'expired-callback': () => {
-          console.warn("reCAPTCHA expired. Please try again.");
-        }
-      });
+  const sendOTP = async (phoneNumber: string) => {
+    try {
+      if (!(window as any).recaptchaVerifier) {
+        (window as any).recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+          size: "invisible",
+          callback: () => {
+            // reCAPTCHA solved, proceed
+          },
+          'expired-callback': () => {
+            console.warn("reCAPTCHA expired. Please try again.");
+          }
+        });
+      }
+
+      const appVerifier = (window as any).recaptchaVerifier;
+
+      const confirmationResult = await signInWithPhoneNumber(
+        auth,
+        `+91${phoneNumber}`,
+        appVerifier
+      );
+
+      // Store confirmationResult to verify OTP later
+      (window as any).confirmationResult = confirmationResult;
+
+      console.log("Sending OTP to:", phoneNumber);
+      console.log("Using appVerifier:", appVerifier);
+
+      navigate("/Verification");
+
+    } catch (error: any) {
+      console.error("OTP Error:", error.message || error);
     }
+  };
 
-    const appVerifier = (window as any).recaptchaVerifier;
-
-    const confirmationResult = await signInWithPhoneNumber(
-      auth,
-      `+91${phoneNumber}`,
-      appVerifier
-    );
-
-    // Store confirmationResult to verify OTP later
-    (window as any).confirmationResult = confirmationResult;
-
-    console.log("Sending OTP to:", phoneNumber);
-    console.log("Using appVerifier:", appVerifier);
-
-    navigate("/Verification");
-
-  } catch (error: any) {
-    console.error("OTP Error:", error.message || error);
-  }
-};
-
-const handleSelectChange = (selectedOption: { value: string; label: string } | null) => {
+  const handleSelectChange = (selectedOption: { value: string; label: string } | null) => {
     setUser(prevUser => ({ ...prevUser, select: selectedOption }));
   };
 
@@ -109,100 +110,100 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
     setFileName(file.name);
     if (file.type !== "application/pdf") {
       toast.error("Only PDF files are allowed.");
-    return;
-  }
+      return;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!validateEmail(user.email)) {
-    toast.error("Please enter a valid College Email Address");
-    return;
-  }
-
-  if (!file) {
-    toast.error("No file selected");
-    return;
-  }
-
-  if (!user.name || !user.email || !user.phone || !user.date || !user.select) {
-    toast.error("All fields are required!");
-    return;
-  }
-
-  setIsSubmitting(true);
-
-  await toast.promise(
-    (async () => {
-      // 1. Upload the file
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const fileUploadResponse = await axios.post(
-        "https://pending-backend-vdug.onrender.com/Pending/upload-pdf",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-
-      const { pageCount, pdf } = fileUploadResponse.data;
-
-      if (!pdf?.fileUrl || !pageCount) {
-        throw new Error("File upload failed");
-      }
-
-      // 2. Save user data to backend
-      const userData = {
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        date: user.date ? new Date(user.date).toISOString() : null,
-        pdf: { fileUrl: pdf.fileUrl },
-        select: user.select?.value || null,
-      };
-
-      const response = await axios.post(
-        "https://pending-backend-vdug.onrender.com/Pending/save-user-data",
-        userData,
-        { headers: { "Content-Type": "application/json" } }
-      );
-
-      if (response.status !== 200) {
-        throw new Error("Failed to save user data");
-      }
-
-      localStorage.setItem("fileName", pdf.fileUrl);
-      localStorage.setItem("pageCount", pageCount.toString());
-      const deliveryDateISO = user.date ? new Date(user.date).toISOString() : null;
-      if (!deliveryDateISO) {
-        throw new Error("Invalid or missing delivery date");
-      }
-      localStorage.setItem("deliveryDate", deliveryDateISO);
-
-      // 4. Send OTP
-      try {
-        await sendOTP(user.phone); // must throw on failure
-      } catch (otpError) {
-        throw new Error("Failed to send the OTP, check the number");
-      }
-
-      // 5. Delay navigation slightly to let toast finish
-      // setTimeout(() => navigate("/Verification"), 1000);
-    })(),
-    {
-      pending: "Uploading your data and sending OTP...",
-      success: "Data uploaded and OTP sent ✅",
-      error: {
-        render({ data }: any) {
-          return `❌ ${data?.message || "Something went wrong"}`;
-        },
-      },
+    e.preventDefault();
+    if (!validateEmail(user.email)) {
+      toast.error("Please enter a valid College Email Address");
+      return;
     }
-  );
 
-  setIsSubmitting(false);
-};
+    if (!file) {
+      toast.error("No file selected");
+      return;
+    }
+
+    if (!user.name || !user.email || !user.phone || !user.date || !user.select) {
+      toast.error("All fields are required!");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    await toast.promise(
+      (async () => {
+        // 1. Upload the file
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const fileUploadResponse = await axios.post(
+          "https://pending-backend-vdug.onrender.com/Pending/upload-pdf",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+
+        const { pageCount, pdf } = fileUploadResponse.data;
+
+        if (!pdf?.fileUrl || !pageCount) {
+          throw new Error("File upload failed");
+        }
+
+        // 2. Save user data to backend
+        const userData = {
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          date: user.date ? new Date(user.date).toISOString() : null,
+          pdf: { fileUrl: pdf.fileUrl },
+          select: user.select?.value || null,
+        };
+
+        const response = await axios.post(
+          "https://pending-backend-vdug.onrender.com/Pending/save-user-data",
+          userData,
+          { headers: { "Content-Type": "application/json" } }
+        );
+
+        if (response.status !== 200) {
+          throw new Error("Failed to save user data");
+        }
+
+        localStorage.setItem("fileName", pdf.fileUrl);
+        localStorage.setItem("pageCount", pageCount.toString());
+        const deliveryDateISO = user.date ? new Date(user.date).toISOString() : null;
+        if (!deliveryDateISO) {
+          throw new Error("Invalid or missing delivery date");
+        }
+        localStorage.setItem("deliveryDate", deliveryDateISO);
+
+        // 4. Send OTP
+        try {
+          await sendOTP(user.phone); // must throw on failure
+        } catch (otpError) {
+          throw new Error("Failed to send the OTP, check the number");
+        }
+
+        // 5. Delay navigation slightly to let toast finish
+        // setTimeout(() => navigate("/Verification"), 1000);
+      })(),
+      {
+        pending: "Uploading your data and sending OTP...",
+        success: "Data uploaded and OTP sent ✅",
+        error: {
+          render({ data }: any) {
+            return `❌ ${data?.message || "Something went wrong"}`;
+          },
+        },
+      }
+    );
+
+    setIsSubmitting(false);
+  };
 
 
   // Select Options
@@ -217,10 +218,35 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
     <div className="relative flex h-screen w-full">
       <div id="recaptcha-container"></div>
       {/* Left Side - File Upload */}
-      <div className="w-1/2 flex flex-col items-center justify-center bg-[#00df9a] text-white p-10">
-        <p className="text-5xl mb-20 font-bold font-urbanist text-center">Upload the question paper of the assignment</p>
-        <Test handleFile={handleFile} />
-        {fileName ? <p>Uploaded File: {fileName}</p> : <p className='font-urbanist'>No file selected</p>}
+      <div className="relative w-1/2 flex flex-col items-center justify-center bg-[#0f0b0f] text-white p-10 overflow-hidden">
+        <LightPillar
+          topColor="#5227FF"
+          bottomColor="#00DF9A"
+          intensity={1.4}
+          rotationSpeed={0.3}
+          glowAmount={0.002}
+          pillarWidth={3}
+          pillarHeight={0.4}
+          noiseIntensity={0.5}
+          pillarRotation={25}
+          interactive={false}
+          mixBlendMode="screen"
+          quality="high"
+        />
+        <div className="relative z-10 flex flex-col items-center justify-center w-full">
+          <p className="text-5xl mb-16 font-bold font-urbanist text-center leading-tight">
+            Upload the question paper <br /> of the assignment
+          </p>
+          <Test handleFile={handleFile} />
+          {fileName ? (
+            <div className="mt-4 flex flex-col items-center animate-fade-in">
+              <p className="text-[#00df9a] font-medium">✓ File ready for upload</p>
+              <p className="text-sm opacity-80 mt-1">Selected: {fileName}</p>
+            </div>
+          ) : (
+            <p className='mt-4 font-urbanist opacity-60'>No file selected</p>
+          )}
+        </div>
       </div>
 
       {/* Right Side - Form */}
@@ -271,8 +297,8 @@ const handleSelectChange = (selectedOption: { value: string; label: string } | n
             selected={user.date}
             onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
-            minDate={new Date()} 
-            maxDate={addDays(new Date(), 10)}        
+            minDate={new Date()}
+            maxDate={addDays(new Date(), 10)}
             className="mt-3 outline-none h-12 pl-5 w-full bg-[#eaeaea] rounded-md"
             isClearable
             placeholderText="Date and Time of Delivery"
