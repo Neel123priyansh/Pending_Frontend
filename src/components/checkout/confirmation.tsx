@@ -8,34 +8,35 @@ import {
 } from "../ui/card"
 
 export const Confirmation = () => {
-    const confettiRef = useRef<ConfettiRef>(null);
-    const deliveryDate = localStorage.getItem("deliveryDate");
-    const show_date = deliveryDate?.slice(0, 10 )
-    const campus = localStorage.getItem("campusYr")
-    const navigate = useNavigate();
+  const confettiRef = useRef<ConfettiRef>(null);
+  const deliveryDate = localStorage.getItem("deliveryDate");
+  const show_date = deliveryDate?.slice(0, 10)
+  const campus = localStorage.getItem("campus")
+  const price = localStorage.getItem("totalPrice")
+  const navigate = useNavigate();
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center ">
-        <Card className="max-w-md w-full space-y-1 p-6 bg-[#f7efd8] rounded-lg shadow-lg">
+      <Card className="max-w-md w-full space-y-1 p-6 bg-[#f7efd8] rounded-lg shadow-lg">
         <div className="flex flex-col items-center">
           <CircleCheckIcon className="text-[#00df9a] h-16 w-16" />
-            <Confetti ref={confettiRef} className="absolute left-0 top-0 z-0 size-full" onMouseEnter={() => {confettiRef.current?.fire({});}}/>
+          <Confetti ref={confettiRef} className="absolute left-0 top-0 z-0 size-full" onMouseEnter={() => { confettiRef.current?.fire({}); }} />
           <h1 className="text-3xl font-bold text-black mt-4">Payment Successful</h1>
           <p className="text-[#301934] text-center dark:text-gray-400 mt-2">
             Your delivery is scheduled for <b>{show_date}</b> Thank you for your payment. Your order has been placed successfully
           </p>
         </div>
         <div className="border-t border-gray-200 dark:border-gray-700 pt-6 space-y-4">
-            <p className="text-[#301934] text-center dark:text-gray-400 mt-2">
-                The delivery point details for your selected campus will be sent to you via WhatsApp.
-            </p>
+          <p className="text-[#301934] text-center dark:text-gray-400 mt-2">
+            The delivery point details for your selected campus will be sent to you via WhatsApp.
+          </p>
           <div className="flex justify-between">
             <span className="text-gray-500 dark:text-gray-400">Selected Campus:</span>
             <span className="font-medium text-black dark:text-gray-50">{campus}</span>
           </div>
-           <div className="flex justify-between">
+          <div className="flex justify-between">
             <span className="text-gray-500 dark:text-gray-400">Amount Paid:</span>
-            <span className="font-medium text-black">₹500</span>
+            <span className="font-medium text-black">₹{price}</span>
           </div>
           <div className="flex justify-center">
             <button onClick={() => navigate('/')} className="inline-flex items-center justify-center px-16 bg-[#00df9a] py-2 cursor-pointer rounded-3xl text-lg font-semibold text-white">Home</button>

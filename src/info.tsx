@@ -180,6 +180,8 @@ export const Info = () => {
           throw new Error("Invalid or missing delivery date");
         }
         localStorage.setItem("deliveryDate", deliveryDateISO);
+        localStorage.setItem("campus", user.select?.value || "");
+        localStorage.setItem("phone", user.phone);
 
         // 4. Send OTP
         try {

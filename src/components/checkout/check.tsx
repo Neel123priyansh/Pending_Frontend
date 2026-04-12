@@ -35,6 +35,7 @@ export const Check = () => {
   const [, setResponseId] = React.useState("");
 
   const total = (price ?? 0) * amount;
+  localStorage.setItem("totalPrice", total.toString());
 
   const loadScript = (src: string): Promise<boolean> => {
     return new Promise((resolve) => {
@@ -145,6 +146,15 @@ export const Check = () => {
       handler: function (response: { razorpay_payment_id: string }) {
         setResponseId(response.razorpay_payment_id);
         setShowConfirmation(true);
+
+        const phone = localStorage.getItem("phone");
+        const campus = localStorage.getItem("campus");
+
+        if (phone && campus) {
+          axios.post("http://localhost:50000/Pending/send-whatsapp", { phone, campus })
+            .then(res => console.log("WhatsApp message status:", res.data))
+            .catch(err => console.error("Error sending WhatsApp:", err));
+        }
 
         localStorage.removeItem("fileName");
         localStorage.removeItem("pageCount");
