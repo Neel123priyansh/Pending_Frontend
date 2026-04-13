@@ -151,7 +151,7 @@ export const Check = () => {
         const campus = localStorage.getItem("campus");
 
         if (phone && campus) {
-          axios.post("http://localhost:50000/Pending/send-whatsapp", { phone, campus })
+          axios.post("https://pending-backend-vdug.onrender.com/Pending/send-whatsapp", { phone, campus })
             .then(res => console.log("WhatsApp message status:", res.data))
             .catch(err => console.error("Error sending WhatsApp:", err));
         }

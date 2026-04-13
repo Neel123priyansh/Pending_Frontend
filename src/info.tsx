@@ -140,7 +140,7 @@ export const Info = () => {
         formData.append("file", file);
 
         const fileUploadResponse = await axios.post(
-          "https://pending-backend-vdug.onrender.com/Pending/upload-pdf",
+          "https://pending-backend-ao8g.onrender.com/Pending/upload-pdf",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -164,7 +164,7 @@ export const Info = () => {
         };
 
         const response = await axios.post(
-          "https://pending-backend-vdug.onrender.com/Pending/save-user-data",
+          "https://pending-backend-ao8g.onrender.com/Pending/save-user-data",
           userData,
           { headers: { "Content-Type": "application/json" } }
         );
