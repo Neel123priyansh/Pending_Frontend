@@ -69,7 +69,7 @@ export const Check = () => {
       }
 
       try {
-        const res = await axios.post("https://pending-backend-vdug.onrender.com/Pending/calculate-price", {
+        const res = await axios.post("https://pending-backend-ao8g.onrender.com/Pending/calculate-price", {
           pageCount,
           deliveryDate,
         });
@@ -83,7 +83,7 @@ export const Check = () => {
 
       // Optional: If orders endpoint is needed
       try {
-        const response = await axios.post("https://pending-backend-vdug.onrender.com/Pending/orders", {
+        const response = await axios.post("https://pending-backend-ao8g.onrender.com/Pending/orders", {
           pageCount,
           deliveryDate,
         }, {
@@ -151,7 +151,7 @@ export const Check = () => {
         const campus = localStorage.getItem("campus");
 
         if (phone && campus) {
-          axios.post("https://pending-backend-vdug.onrender.com/Pending/send-whatsapp", { phone, campus })
+          axios.post("https://pending-backend-ao8g.onrender.com/Pending/send-whatsapp", { phone, campus })
             .then(res => console.log("WhatsApp message status:", res.data))
             .catch(err => console.error("Error sending WhatsApp:", err));
         }
