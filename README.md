@@ -76,16 +76,6 @@ https://github.com/Neel123priyansh/Pending_Backend
 
 ---
 
-## ✨ Features
-
-* 🔍 Search and connect with experts
-* 📅 Session booking system (Studyband integration)
-* 💬 Real-time chat interface
-* 🎥 Video interaction support
-* 📱 Fully responsive UI
-* ⚡ Fast performance with Vite
-
----
 
 ## 🧩 Scripts
 
