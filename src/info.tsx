@@ -57,7 +57,7 @@ export const Info = () => {
   };
 
   // Email Validation
-  const validateEmail = (email: string) => /^[a-zA-Z0-9._%+-]+@srmist\.edu\.in$/.test(email);
+  const validateEmail = (email: string) => /[a-zA-Z0-9._%+-]@srmist\.edu\.in$/.test(email);
 
   // Input Change Handler
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
