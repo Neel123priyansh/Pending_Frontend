@@ -17,7 +17,6 @@ Users can:
 
 * **Framework:** Vite + React + TypeScript
 * **Styling:** Tailwind CSS
-* **State Management:** (Add if applicable, e.g., Redux / Context API)
 * **Routing:** React Router (if used)
 * **Build Tool:** Vite
 
@@ -73,16 +72,6 @@ npm run build
 
 ---
 
-## 🌐 Environment Variables
-
-Create a `.env` file in the root directory and add:
-
-```
-VITE_API_BASE_URL=your_backend_url
-```
-
----
-
 ## ✨ Features
 
 * 🔍 Search and connect with experts
@@ -132,20 +121,5 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Author
 
 Developed by **Neel23priyansh**
-
----
-
-## 💡 Future Improvements
-
-* Notifications system
-* Payment integration
-* Enhanced expert profiles
-* AI-based expert recommendations
-
----
-
-## 📞 Support
-
-If you have any questions or issues, feel free to open an issue or contact the maintainer.
 
 ---
