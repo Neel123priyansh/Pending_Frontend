@@ -1,2 +1,149 @@
-# Pending
-Pending is an online platform connecting ambitious students and top experts from all over the world. It's a great place where people can cooperate with skilled professionals in any subject to succeed in learning or share their expertise with those who seek help. You can find an expert in any subject here on Studybay and connect with them directly via our secure chat, without intermediaries. At Pending, we are dedicated to helping you succeed in your academic endeavors. Our platform is built on the principles of trust, expertise, and seamless communication, making it the ideal place to find the support you need to achieve your goals. Explore our platform today and take the next step in your educational journey with Pending.
+# Pending Frontend
+
+## 📌 Overview
+
+**Pending** is an online platform that connects ambitious students with top experts across various fields. This repository contains the **frontend** of the application, built to deliver a seamless, responsive, and user-friendly experience.
+
+Users can:
+
+* Find experts in any subject
+* Book sessions via Studyband
+* Connect through secure chat and video interactions
+* Access mentorship and academic guidance easily
+
+---
+
+## 🚀 Tech Stack
+
+* **Framework:** Vite + React + TypeScript
+* **Styling:** Tailwind CSS
+* **State Management:** (Add if applicable, e.g., Redux / Context API)
+* **Routing:** React Router (if used)
+* **Build Tool:** Vite
+
+---
+
+## 📂 Project Structure
+
+```
+Pending_Frontend/
+│── public/            # Static assets
+│── src/               # Main source code
+│   ├── components/    # Reusable UI components
+│   ├── pages/         # Application pages/views
+│   ├── hooks/         # Custom hooks (if any)
+│   ├── utils/         # Helper functions
+│   └── assets/        # Images, icons, etc.
+│
+│── index.html
+│── package.json
+│── tailwind.config.js
+│── vite.config.ts
+│── tsconfig.json
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repo-url>
+cd Pending_Frontend
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+### 4. Build for production
+
+```bash
+npm run build
+```
+
+---
+
+## 🌐 Environment Variables
+
+Create a `.env` file in the root directory and add:
+
+```
+VITE_API_BASE_URL=your_backend_url
+```
+
+---
+
+## ✨ Features
+
+* 🔍 Search and connect with experts
+* 📅 Session booking system (Studyband integration)
+* 💬 Real-time chat interface
+* 🎥 Video interaction support
+* 📱 Fully responsive UI
+* ⚡ Fast performance with Vite
+
+---
+
+## 🧩 Scripts
+
+```bash
+npm run dev       # Start development server
+npm run build     # Build for production
+npm run preview   # Preview production build
+```
+
+---
+
+## 📸 Screenshots
+
+(Add screenshots here if needed)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repo
+2. Create a new branch (`feature/your-feature`)
+3. Commit changes
+4. Push and create a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Neel23priyansh**
+
+---
+
+## 💡 Future Improvements
+
+* Notifications system
+* Payment integration
+* Enhanced expert profiles
+* AI-based expert recommendations
+
+---
+
+## 📞 Support
+
+If you have any questions or issues, feel free to open an issue or contact the maintainer.
+
+---
