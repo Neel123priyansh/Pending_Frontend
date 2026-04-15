@@ -106,7 +106,9 @@ npm run preview   # Preview production build
 
 ## 📸 Screenshots
 
-(Add screenshots here if needed)
+![alt text](https://github.com/Neel123priyansh/Pending_Frontend/blob/main/Img/img.png)
+
+![alt text](https://github.com/Neel123priyansh/Pending_Frontend/blob/main/Img/img_2.png)
 
 ---
 
